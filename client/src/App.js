@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ExampleContract from "./contracts/Example.json";
+import CVContract from "./contracts/CVContract.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
@@ -17,9 +17,9 @@ class App extends Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = ExampleContract.networks[networkId];
+      const deployedNetwork = CVContract.networks[networkId];
       const instance = new web3.eth.Contract(
-        ExampleContract.abi,
+        CVContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
 
@@ -39,7 +39,7 @@ class App extends Component {
     const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
-    await contract.methods.set(10).send({ from: accounts[0] });
+    // await contract.methods.set(3).send({ from: accounts[0] });
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.get().call();
